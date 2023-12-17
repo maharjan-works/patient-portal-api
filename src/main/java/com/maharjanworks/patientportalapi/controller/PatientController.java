@@ -3,6 +3,7 @@ package com.maharjanworks.patientportalapi.controller;
 import com.maharjanworks.patientportalapi.model.Patient;
 import com.maharjanworks.patientportalapi.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,4 +24,11 @@ public class PatientController {
     public Patient createPatient(@RequestBody Patient patient){
         return this.patientService.save(patient);
     }
+
+    @GetMapping("/patient/{patientId}")
+    public ResponseEntity<Patient> getPatientById(@PathVariable Long patientId){
+        return ResponseEntity.ok(this.patientService.getPatientById(patientId));
+    }
+
+
 }
