@@ -16,4 +16,9 @@ public class PatientServiceImpl implements PatientService{
     public List<Patient> findAll() {
         return this.patientRepository.findAll();
     }
+
+    @Override
+    public Patient save(Patient patient) {
+        return this.patientRepository.save(patient);
+    }
 }

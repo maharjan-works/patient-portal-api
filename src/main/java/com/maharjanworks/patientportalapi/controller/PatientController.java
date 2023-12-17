@@ -3,12 +3,11 @@ package com.maharjanworks.patientportalapi.controller;
 import com.maharjanworks.patientportalapi.model.Patient;
 import com.maharjanworks.patientportalapi.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin( value = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1/")
 public class PatientController {
@@ -18,5 +17,10 @@ public class PatientController {
     @GetMapping("/patient")
     List<Patient> findAll(){
        return this.patientService.findAll();
+    }
+
+    @PostMapping("/patient")
+    public Patient createPatient(@RequestBody Patient patient){
+        return this.patientService.save(patient);
     }
 }
