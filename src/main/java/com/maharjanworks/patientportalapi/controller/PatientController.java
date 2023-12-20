@@ -30,5 +30,11 @@ public class PatientController {
         return ResponseEntity.ok(this.patientService.getPatientById(patientId));
     }
 
+    @PutMapping("/patient/{patientId}")
+    public ResponseEntity<Patient> updatePatient(@PathVariable("patientId") Long patientId,@RequestBody Patient newPatientDetails){
+          return ResponseEntity.ok(this.patientService.updatePatient(patientId, newPatientDetails));
+    }
+
+
 
 }

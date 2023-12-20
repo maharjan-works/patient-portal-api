@@ -11,4 +11,6 @@ public interface PatientService {
     Patient save(Patient patient);
 
     Patient getPatientById(Long patientId);
+
+    Patient updatePatient(Long patientId, Patient newPatientDetails);
 }

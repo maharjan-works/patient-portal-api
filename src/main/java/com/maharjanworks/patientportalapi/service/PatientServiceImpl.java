@@ -29,4 +29,18 @@ public class PatientServiceImpl implements PatientService{
         return this.patientRepository.findById(patientId)
                 .orElseThrow(()->new ResourceNotFoundException("Patient not exist with id : "+ patientId));
     }
+
+    @Override
+    public Patient updatePatient(Long patientId, Patient newPatientDetails) {
+       Patient dbPatient = this.patientRepository.findById(patientId)
+                .orElseThrow(()->new ResourceNotFoundException("Patient not exist with id : "+ patientId));
+
+       dbPatient.setFirstName(newPatientDetails.getFirstName());
+       dbPatient.setLastName(newPatientDetails.getLastName());
+       dbPatient.setDob(newPatientDetails.getDob());
+       dbPatient.setEmail(newPatientDetails.getEmail());
+       dbPatient.setPhoneNumber(newPatientDetails.getPhoneNumber());
+
+       return this.patientRepository.save(dbPatient);
+    }
 }
