@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin( value = "http://localhost:4200")
 @RestController
@@ -33,6 +34,11 @@ public class PatientController {
     @PutMapping("/patient/{patientId}")
     public ResponseEntity<Patient> updatePatient(@PathVariable("patientId") Long patientId,@RequestBody Patient newPatientDetails){
           return ResponseEntity.ok(this.patientService.updatePatient(patientId, newPatientDetails));
+    }
+
+    @DeleteMapping("patient/{patientId}")
+    public ResponseEntity<Map<String, Boolean>> deletePatient(@PathVariable("patientId") Long patientId){
+        return ResponseEntity.ok(this.patientService.deletePatient(patientId));
     }
 
 

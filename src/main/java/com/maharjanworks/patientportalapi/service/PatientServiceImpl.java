@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PatientServiceImpl implements PatientService{
@@ -42,5 +44,16 @@ public class PatientServiceImpl implements PatientService{
        dbPatient.setPhoneNumber(newPatientDetails.getPhoneNumber());
 
        return this.patientRepository.save(dbPatient);
+    }
+
+    @Override
+    public Map<String, Boolean> deletePatient(Long patientId) {
+        Patient dbPatient = this.patientRepository.findById(patientId)
+                .orElseThrow(()-> new ResourceNotFoundException("Patient not exist with Id: " + patientId));
+
+        this.patientRepository.delete(dbPatient);
+        Map<String,Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
     }
 }

@@ -3,6 +3,7 @@ package com.maharjanworks.patientportalapi.service;
 import com.maharjanworks.patientportalapi.model.Patient;
 
 import java.util.List;
+import java.util.Map;
 
 public interface PatientService {
 
@@ -13,4 +14,6 @@ public interface PatientService {
     Patient getPatientById(Long patientId);
 
     Patient updatePatient(Long patientId, Patient newPatientDetails);
+
+    Map<String, Boolean> deletePatient(Long patientId);
 }
