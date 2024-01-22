@@ -2,6 +2,7 @@ package com.maharjanworks.patientportalapi.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -13,14 +14,23 @@ public class Patient {
     private String firstName;
     private String lastName;
     @Column(name = "date-of-birth")
-    private Date dob;
+    private LocalDate dob;
     private String email;
     private String phoneNumber;
 
     public Patient() {
     }
 
-    public Patient(String firstName, String lastName, Date dob, String email, String phoneNumber) {
+    public Patient(String firstName, String lastName, LocalDate dob, String email, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Patient(Long patientId, String firstName, String lastName, LocalDate dob, String email, String phoneNumber) {
+        this.patientId = patientId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
@@ -52,11 +62,11 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
